@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Math & CP Blog</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- KaTeX for LaTeX -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+
+    <!-- Prism for Code Highlighting -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body
+    class="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50"
+  >
+    <!-- Password Setup Modal -->
+    <div
+      id="passwordSetupModal"
+      class="hidden min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 flex items-center justify-center p-4"
+    >
+      <div class="bg-white rounded-xl shadow-lg p-8 max-w-md w-full">
+        <div class="flex items-center justify-center mb-6">
+          <div
+            class="bg-gradient-to-r from-blue-600 to-purple-600 p-3 rounded-lg"
+          >
+            <i
+              data-lucide="lock"
+              class="text-white"
+              style="width: 32px; height: 32px"
+            ></i>
+          </div>
+        </div>
+        <h2 class="text-2xl font-bold text-gray-900 text-center mb-2">
+          Welcome!
+        </h2>
+        <p class="text-gray-600 text-center mb-6">
+          Set up your admin password to protect your blog
+        </p>
+        <input
+          type="password"
+          id="setupPasswordInput"
+          placeholder="Enter admin password"
+          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
+        />
+        <button
+          onclick="app.setupPassword()"
+          class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg hover:opacity-90 transition font-medium"
+        >
+          Set Password
+        </button>
+        <p class="text-sm text-gray-500 text-center mt-4">
+          Minimum 4 characters
+        </p>
+      </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div
+      id="loginModal"
+      class="hidden min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 flex items-center justify-center p-4"
+    >
+      <div class="bg-white rounded-xl shadow-lg p-8 max-w-md w-full">
+        <div class="flex items-center justify-center mb-6">
+          <div
+            class="bg-gradient-to-r from-blue-600 to-purple-600 p-3 rounded-lg"
+          >
+            <i
+              data-lucide="lock"
+              class="text-white"
+              style="width: 32px; height: 32px"
+            ></i>
+          </div>
+        </div>
+        <h2 class="text-2xl font-bold text-gray-900 text-center mb-2">
+          Admin Login
+        </h2>
+        <p class="text-gray-600 text-center mb-6">
+          Enter password to create or edit posts
+        </p>
+        <input
+          type="password"
+          id="loginPasswordInput"
+          placeholder="Enter password"
+          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
+        />
+        <div class="flex space-x-3">
+          <button
+            onclick="app.login()"
+            class="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg hover:opacity-90 transition font-medium"
+          >
+            Login
+          </button>
+          <button
+            onclick="app.cancelLogin()"
+            class="px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main App -->
+    <div id="mainApp" class="hidden">
+      <!-- Header -->
+      <header class="bg-white shadow-sm border-b border-gray-200">
+        <div class="max-w-6xl mx-auto px-4 py-4">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+              <div
+                class="bg-gradient-to-r from-blue-600 to-purple-600 p-2 rounded-lg"
+              >
+                <i
+                  data-lucide="book-open"
+                  class="text-white"
+                  style="width: 24px; height: 24px"
+                ></i>
+              </div>
+              <div>
+                <h1 class="text-2xl font-bold text-gray-900">Math & CP Blog</h1>
+                <p class="text-sm text-gray-600">
+                  Problem solving and algorithms
+                </p>
+              </div>
+            </div>
+            <div class="flex items-center space-x-3">
+              <button
+                id="newPostBtn"
+                class="hidden flex items-center space-x-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-lg hover:opacity-90 transition"
+              >
+                <i data-lucide="plus" style="width: 20px; height: 20px"></i>
+                <span>New Post</span>
+              </button>
+              <button
+                id="logoutBtn"
+                class="hidden flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition text-gray-700"
+              >
+                <i data-lucide="log-out" style="width: 20px; height: 20px"></i>
+                <span>Logout</span>
+              </button>
+              <button
+                id="loginBtn"
+                class="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition text-gray-700"
+              >
+                <i data-lucide="lock" style="width: 20px; height: 20px"></i>
+                <span>Admin Login</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="max-w-6xl mx-auto px-4 py-8">
+        <!-- Navigation -->
+        <div class="flex items-center space-x-2 mb-6">
+          <button
+            onclick="app.setView('home')"
+            id="navHome"
+            class="flex items-center space-x-2 px-4 py-2 rounded-lg transition bg-white shadow-sm text-blue-600"
+          >
+            <i data-lucide="home" style="width: 18px; height: 18px"></i>
+            <span>All Posts</span>
+          </button>
+          <button
+            onclick="app.setView('math')"
+            id="navMath"
+            class="flex items-center space-x-2 px-4 py-2 rounded-lg transition text-gray-600 hover:bg-white"
+          >
+            <i data-lucide="book-open" style="width: 18px; height: 18px"></i>
+            <span>Math</span>
+          </button>
+          <button
+            onclick="app.setView('cp')"
+            id="navCp"
+            class="flex items-center space-x-2 px-4 py-2 rounded-lg transition text-gray-600 hover:bg-white"
+          >
+            <i data-lucide="code" style="width: 18px; height: 18px"></i>
+            <span>Competitive Programming</span>
+          </button>
+        </div>
+
+        <!-- Search and Filter -->
+        <div id="searchSection" class="bg-white rounded-xl shadow-sm p-4 mb-6">
+          <div class="flex flex-col sm:flex-row gap-4">
+            <div class="flex-1 relative">
+              <i
+                data-lucide="search"
+                class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+                style="width: 20px; height: 20px"
+              ></i>
+              <input
+                type="text"
+                id="searchInput"
+                placeholder="Search posts..."
+                class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+            <div class="flex items-center space-x-2">
+              <i
+                data-lucide="tag"
+                class="text-gray-400"
+                style="width: 20px; height: 20px"
+              ></i>
+              <select
+                id="tagFilter"
+                class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option value="all">All Tags</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Create/Edit Post Form -->
+        <div id="postForm" class="hidden bg-white rounded-xl shadow-sm p-6">
+          <h2 id="formTitle" class="text-2xl font-bold text-gray-900 mb-6">
+            Create New Post
+          </h2>
+          <div class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2"
+                >Title</label
+              >
+              <input
+                type="text"
+                id="postTitle"
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Enter post title..."
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2"
+                >Short Description</label
+              >
+              <textarea
+                id="postDescription"
+                rows="2"
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Brief description shown in the post list..."
+              ></textarea>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2"
+                  >Category</label
+                >
+                <select
+                  id="postCategory"
+                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  <option value="math">Math</option>
+                  <option value="cp">Competitive Programming</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2"
+                  >Difficulty</label
+                >
+                <select
+                  id="postDifficulty"
+                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  <option value="easy">Easy</option>
+                  <option value="medium">Medium</option>
+                  <option value="hard">Hard</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2"
+                >Tags</label
+              >
+              <div class="flex gap-2 mb-3">
+                <input
+                  type="text"
+                  id="customTagInput"
+                  placeholder="Add custom tag..."
+                  class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+                <button
+                  onclick="app.addCustomTag()"
+                  class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+                >
+                  Add
+                </button>
+              </div>
+              <div id="selectedTagsContainer" class="hidden mb-3">
+                <p class="text-xs text-gray-600 mb-2">Selected tags:</p>
+                <div id="selectedTags" class="flex flex-wrap gap-2"></div>
+              </div>
+              <div>
+                <p class="text-xs text-gray-600 mb-2">
+                  Suggested tags (click to add):
+                </p>
+                <div id="suggestedTags" class="flex flex-wrap gap-2"></div>
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2"
+                >Content</label
+              >
+              <div class="text-xs text-gray-500 mb-2 space-y-1">
+                <p>• Use $...$ for inline math: $x^2 + y^2 = z^2$</p>
+                <p>• Use $$...$$ for display math (on new lines)</p>
+                <p>• Use ```cpp, ```python, ```java for code blocks</p>
+              </div>
+              <textarea
+                id="postContent"
+                rows="14"
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 font-mono text-sm"
+                placeholder="Example:&#10;The quadratic formula is $x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$&#10;&#10;```cpp&#10;int fibonacci(int n) {&#10;    if (n <= 1) return n;&#10;    return fibonacci(n-1) + fibonacci(n-2);&#10;}&#10;```"
+              ></textarea>
+            </div>
+            <div class="flex space-x-3">
+              <button
+                onclick="app.savePost()"
+                id="savePostBtn"
+                class="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg hover:opacity-90 transition font-medium"
+              >
+                Publish Post
+              </button>
+              <button
+                onclick="app.cancelPostForm()"
+                class="px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Single Post View -->
+        <div id="postView" class="hidden bg-white rounded-xl shadow-sm p-8">
+          <div class="mb-6">
+            <div class="flex items-start justify-between mb-4">
+              <h1
+                id="postViewTitle"
+                class="text-3xl font-bold text-gray-900"
+              ></h1>
+              <div id="postActions" class="hidden flex space-x-2">
+                <button
+                  onclick="app.editCurrentPost()"
+                  class="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition"
+                >
+                  <i data-lucide="edit" style="width: 20px; height: 20px"></i>
+                </button>
+                <button
+                  onclick="app.deleteCurrentPost()"
+                  class="p-2 text-red-600 hover:bg-red-50 rounded-lg transition"
+                >
+                  <i
+                    data-lucide="trash-2"
+                    style="width: 20px; height: 20px"
+                  ></i>
+                </button>
+              </div>
+            </div>
+            <div
+              id="postViewMeta"
+              class="flex flex-wrap items-center gap-3 text-sm text-gray-600 mb-3"
+            ></div>
+            <div id="postViewTags" class="flex flex-wrap gap-2"></div>
+          </div>
+          <div
+            id="postViewContent"
+            class="prose max-w-none text-gray-700 leading-relaxed"
+            style="font-size: 16px; line-height: 1.8"
+          ></div>
+          <button
+            onclick="app.backToList()"
+            class="mt-8 text-blue-600 hover:text-blue-700 font-medium"
+          >
+            ← Back to posts
+          </button>
+        </div>
+
+        <!-- Posts List -->
+        <div id="postsList" class="grid gap-6"></div>
+
+        <div id="noPosts" class="hidden text-center py-12 text-gray-500">
+          <i
+            data-lucide="book-open"
+            class="mx-auto mb-4 opacity-50"
+            style="width: 48px; height: 48px"
+          ></i>
+          <p class="text-lg">No posts yet. Create your first post!</p>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
