@@ -9,9 +9,10 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
+app.set("trust proxy", 1); // ADD THIS LINE
+
 app.use(
   cors({
-    // origin: "http://localhost:3000",
     origin: true,
     credentials: true,
   }),
@@ -20,17 +21,16 @@ app.use(express.json());
 app.use(express.static("public"));
 app.use(
   session({
-    secret: "your-secret-key-change-this-in-production",
+    secret:
+      process.env.SESSION_SECRET || "your-secret-key-change-this-in-production",
     resave: false,
     saveUninitialized: false,
-    // cookie: {
-    //   secure: false, // set to true if using https
-    //   maxAge: 24 * 60 * 60 * 1000, // 24 hours
-    // },
+    proxy: true,
     cookie: {
       secure: true,
-      sameSite: "lax",
+      sameSite: "none",
       maxAge: 24 * 60 * 60 * 1000,
+      httpOnly: true,
     },
   }),
 );
