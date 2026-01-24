@@ -1,5 +1,9 @@
 // API Base URL
-const API_URL = "http://localhost:3000/api";
+// Replace the hardcoded API_URL with this:
+const API_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:3000/api"
+    : `${window.location.origin}/api`;
 
 // API Helper Functions
 const api = {
