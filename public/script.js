@@ -97,10 +97,10 @@ const app = {
   },
 
   difficultyColors: {
-    easy: "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300",
+    easy: "bg-green-100 text-green-800 dark:bg-green-500/20 dark:text-green-400 dark:border dark:border-green-500/50",
     medium:
-      "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300",
-    hard: "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300",
+      "bg-yellow-100 text-yellow-800 dark:bg-yellow-500/20 dark:text-yellow-400 dark:border dark:border-yellow-500/50",
+    hard: "bg-red-100 text-red-800 dark:bg-red-500/20 dark:text-red-400 dark:border dark:border-red-500/50",
   },
 
   setHashForPost(postId) {
@@ -393,7 +393,7 @@ const app = {
         class="px-3 py-1 rounded-full text-sm transition ${
           this.state.formData.tags.includes(tag)
             ? "bg-blue-600 text-white"
-            : "bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
+            : "bg-gray-100 dark:bg-violet-500/10 dark:border dark:border-violet-500/30 text-gray-700 dark:text-violet-300 hover:bg-gray-200 dark:hover:bg-violet-500/20"
         }"
       >
         ${tag}
@@ -444,7 +444,7 @@ const app = {
       container.innerHTML = this.state.formData.tags
         .map(
           (tag) => `
-        <span class="inline-flex items-center gap-1 px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm">
+        <span class="inline-flex items-center gap-1 px-3 py-1 bg-blue-100 dark:bg-violet-500/20 dark:border dark:border-violet-500/50 text-blue-800 dark:text-violet-300 rounded-full text-sm">
           ${tag}
           <button onclick="app.removeTag('${tag}')" class="hover:text-blue-900 dark:hover:text-blue-100 ml-1">×</button>
         </span>
@@ -509,13 +509,13 @@ const app = {
 
     ["navHome", "navMath", "navCp"].forEach((id) => {
       document.getElementById(id).className =
-        "flex items-center space-x-2 px-4 py-2 rounded-lg transition text-gray-600 dark:text-gray-400 hover:bg-white dark:hover:bg-gray-900";
+        "flex items-center space-x-2 px-4 py-2 rounded-lg transition text-gray-600 dark:text-gray-400 hover:bg-white dark:hover:bg-violet-500/10";
     });
 
     const activeNav =
       view === "home" ? "navHome" : view === "math" ? "navMath" : "navCp";
     document.getElementById(activeNav).className =
-      "flex items-center space-x-2 px-4 py-2 rounded-lg transition bg-white dark:bg-gray-900 shadow-sm text-blue-600 dark:text-purple-400";
+      "flex items-center space-x-2 px-4 py-2 rounded-lg transition bg-white dark:bg-violet-500/10 dark:border dark:border-violet-500/50 shadow-sm text-blue-600 dark:text-violet-400";
 
     document.getElementById("searchSection").classList.remove("hidden");
     document.getElementById("postForm").classList.add("hidden");
@@ -542,8 +542,8 @@ const app = {
 
     const categoryBadge =
       post.category === "math"
-        ? '<span class="px-3 py-1 rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">Mathematics</span>'
-        : '<span class="px-3 py-1 rounded-full bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200">Competitive Programming</span>';
+        ? '<span class="px-3 py-1 rounded-full bg-blue-100 text-blue-800 dark:bg-blue-500/20 dark:border dark:border-blue-500/50 dark:text-blue-400">Mathematics</span>'
+        : '<span class="px-3 py-1 rounded-full bg-purple-100 text-purple-800 dark:bg-violet-500/20 dark:border dark:border-violet-500/50 dark:text-violet-400">Competitive Programming</span>';
 
     const difficultyBadge = `<span class="px-3 py-1 rounded-full ${this.difficultyColors[post.difficulty]}">${post.difficulty.charAt(0).toUpperCase() + post.difficulty.slice(1)}</span>`;
 
@@ -561,7 +561,7 @@ const app = {
     document.getElementById("postViewTags").innerHTML = post.tags
       .map(
         (tag) => `
-      <span class="px-3 py-1 bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900 dark:to-purple-900 text-blue-800 dark:text-blue-200 text-sm rounded-full font-medium">
+      <span class="px-3 py-1 bg-gradient-to-r from-blue-100 to-purple-100 dark:from-violet-500/20 dark:to-purple-500/20 dark:border dark:border-violet-500/50 text-blue-800 dark:text-violet-300 text-sm rounded-full font-medium">
         ${tag}
       </span>
     `,
@@ -793,10 +793,10 @@ const app = {
         (post) => `
       <div
         onclick="app.viewPost('${post.id}')"
-        class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 hover:shadow-md transition cursor-pointer"
+        class="bg-white dark:bg-black dark:border dark:border-violet-500/30 dark:hover:border-violet-500/50 rounded-xl shadow-sm p-6 hover:shadow-md transition cursor-pointer"
       >
         <div class="flex items-start justify-between mb-3">
-          <h2 class="text-xl font-bold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-purple-400 transition">
+          <h2 class="text-xl font-bold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-violet-400 transition">
             ${post.title}
           </h2>
           <span class="px-3 py-1 rounded-full text-sm ${this.difficultyColors[post.difficulty]}">
@@ -808,14 +808,14 @@ const app = {
         </p>
         <div class="flex items-center justify-between">
           <div class="flex flex-wrap gap-2">
-            <span class="px-2 py-1 rounded text-xs ${post.category === "math" ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200" : "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200"}">
+            <span class="px-2 py-1 rounded text-xs ${post.category === "math" ? "bg-blue-100 text-blue-800 dark:bg-blue-500/20 dark:border dark:border-blue-500/50 dark:text-blue-400" : "bg-purple-100 text-purple-800 dark:bg-violet-500/20 dark:border dark:border-violet-500/50 dark:text-violet-400"}">
               ${post.category === "math" ? "Math" : "CP"}
             </span>
             ${post.tags
               .slice(0, 4)
               .map(
                 (tag) => `
-              <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded">
+              <span class="px-2 py-1 bg-gray-100 dark:bg-violet-500/10 dark:border dark:border-violet-500/30 text-gray-700 dark:text-violet-300 text-xs rounded">
                 ${tag}
               </span>
             `,

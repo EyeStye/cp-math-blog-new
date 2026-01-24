@@ -38,15 +38,15 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body
-    class="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors duration-200"
+    class="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-black dark:via-gray-950 dark:to-violet-950 transition-colors duration-200"
   >
     <!-- Password Setup Modal -->
     <div
       id="passwordSetupModal"
-      class="hidden min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 flex items-center justify-center p-4"
+      class="hidden min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-black dark:via-gray-950 dark:to-violet-950 flex items-center justify-center p-4"
     >
       <div
-        class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 max-w-md w-full"
+        class="bg-white dark:bg-black dark:border dark:border-violet-500/30 rounded-xl shadow-lg p-8 max-w-md w-full"
       >
         <div class="flex items-center justify-center mb-6">
           <div
@@ -88,10 +88,10 @@
     <!-- Login Modal -->
     <div
       id="loginModal"
-      class="hidden min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 flex items-center justify-center p-4"
+      class="hidden min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-black dark:via-gray-950 dark:to-violet-950 flex items-center justify-center p-4"
     >
       <div
-        class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 max-w-md w-full"
+        class="bg-white dark:bg-black dark:border dark:border-violet-500/30 rounded-xl shadow-lg p-8 max-w-md w-full"
       >
         <div class="flex items-center justify-center mb-6">
           <div
@@ -139,7 +139,7 @@
     <div id="mainApp" class="hidden">
       <!-- Header -->
       <header
-        class="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700"
+        class="bg-white dark:bg-black shadow-sm border-b border-gray-200 dark:border-violet-500/30"
       >
         <div class="max-w-6xl mx-auto px-4 py-4">
           <div class="flex items-center justify-between">
@@ -192,7 +192,7 @@
               </button>
               <button
                 id="loginBtn"
-                class="flex items-center space-x-2 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition text-gray-700 dark:text-gray-300"
+                class="flex items-center space-x-2 px-4 py-2 rounded-lg transition bg-white dark:bg-violet-500/10 dark:border dark:border-violet-500/50 shadow-sm text-blue-600 dark:text-violet-400"
               >
                 <i data-lucide="lock" style="width: 20px; height: 20px"></i>
                 <span>Admin Login</span>
@@ -216,7 +216,7 @@
           <button
             onclick="app.setView('math')"
             id="navMath"
-            class="flex items-center space-x-2 px-4 py-2 rounded-lg transition text-gray-600 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-800"
+            class="flex items-center space-x-2 px-4 py-2 rounded-lg transition text-gray-600 dark:text-gray-300 hover:bg-white dark:hover:bg-violet-500/10"
           >
             <i data-lucide="book-open" style="width: 18px; height: 18px"></i>
             <span>Math</span>
@@ -224,7 +224,7 @@
           <button
             onclick="app.setView('cp')"
             id="navCp"
-            class="flex items-center space-x-2 px-4 py-2 rounded-lg transition text-gray-600 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-800"
+            class="flex items-center space-x-2 px-4 py-2 rounded-lg transition text-gray-600 dark:text-gray-300 hover:bg-white dark:hover:bg-violet-500/10"
           >
             <i data-lucide="code" style="width: 18px; height: 18px"></i>
             <span>Competitive Programming</span>
@@ -234,7 +234,7 @@
         <!-- Search and Filter -->
         <div
           id="searchSection"
-          class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-4 mb-6"
+          class="bg-white dark:bg-black dark:border dark:border-violet-500/30 rounded-xl shadow-sm p-4 mb-6"
         >
           <div class="flex flex-col sm:flex-row gap-4">
             <div class="flex-1 relative">
@@ -269,7 +269,7 @@
         <!-- Create/Edit Post Form -->
         <div
           id="postForm"
-          class="hidden bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6"
+          class="hidden bg-white dark:bg-black dark:border dark:border-violet-500/30 rounded-xl shadow-sm p-6"
         >
           <h2
             id="formTitle"
@@ -403,7 +403,7 @@
         <!-- Single Post View -->
         <div
           id="postView"
-          class="hidden bg-white dark:bg-gray-800 rounded-xl shadow-sm p-8"
+          class="hidden bg-white dark:bg-black dark:border dark:border-violet-500/30 rounded-xl shadow-sm p-8"
         >
           <div class="mb-6">
             <div class="flex items-start justify-between mb-4">
@@ -442,7 +442,7 @@
           ></div>
           <button
             onclick="app.backToList()"
-            class="mt-8 text-blue-600 dark:text-purple-400 hover:text-blue-700 dark:hover:text-purple-300 font-medium"
+            class="mt-8 text-blue-600 dark:text-violet-400 hover:text-blue-700 dark:hover:text-violet-300 font-medium"
           >
             ← Back to posts
           </button>
