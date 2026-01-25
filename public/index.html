@@ -143,26 +143,30 @@
       >
         <div class="max-w-6xl mx-auto px-4 py-4">
           <div class="flex items-center justify-between">
-            <div class="flex items-center space-x-3">
+            <div class="flex items-center space-x-2 sm:space-x-3">
               <div
                 class="bg-gradient-to-r from-blue-600 to-purple-600 p-2 rounded-lg"
               >
                 <i
                   data-lucide="book-open"
                   class="text-white"
-                  style="width: 24px; height: 24px"
+                  style="width: 20px; height: 20px"
                 ></i>
               </div>
               <div>
-                <h1 class="text-2xl font-bold text-gray-900 dark:text-white">
+                <h1
+                  class="text-lg sm:text-2xl font-bold text-gray-900 dark:text-white"
+                >
                   Math & CP Blog
                 </h1>
-                <p class="text-sm text-gray-600 dark:text-gray-300">
+                <p
+                  class="text-xs sm:text-sm text-gray-600 dark:text-gray-300 hidden sm:block"
+                >
                   Problem solving and algorithms
                 </p>
               </div>
             </div>
-            <div class="flex items-center space-x-3">
+            <div class="flex items-center space-x-2 sm:space-x-3">
               <!-- Dark Mode Toggle -->
               <button
                 id="themeToggle"
@@ -178,24 +182,24 @@
 
               <button
                 id="newPostBtn"
-                class="hidden flex items-center space-x-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-lg hover:opacity-90 transition"
+                class="hidden items-center space-x-1 sm:space-x-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-3 sm:px-4 py-2 rounded-lg hover:opacity-90 transition text-sm"
               >
-                <i data-lucide="plus" style="width: 20px; height: 20px"></i>
-                <span>New Post</span>
+                <i data-lucide="plus" style="width: 18px; height: 18px"></i>
+                <span class="hidden sm:inline">New Post</span>
               </button>
               <button
                 id="logoutBtn"
-                class="hidden flex items-center space-x-2 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition text-gray-700 dark:text-gray-300"
+                class="hidden items-center space-x-1 sm:space-x-2 px-3 sm:px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition text-gray-700 dark:text-gray-300 text-sm"
               >
-                <i data-lucide="log-out" style="width: 20px; height: 20px"></i>
-                <span>Logout</span>
+                <i data-lucide="log-out" style="width: 18px; height: 18px"></i>
+                <span class="hidden sm:inline">Logout</span>
               </button>
               <button
                 id="loginBtn"
-                class="flex items-center space-x-2 px-4 py-2 rounded-lg transition bg-white dark:bg-violet-500/10 dark:border dark:border-violet-500/50 shadow-sm text-blue-600 dark:text-violet-400"
+                class="flex items-center space-x-1 sm:space-x-2 px-3 sm:px-4 py-2 rounded-lg transition bg-white dark:bg-violet-500/10 dark:border dark:border-violet-500/50 shadow-sm text-blue-600 dark:text-violet-400 text-sm"
               >
-                <i data-lucide="lock" style="width: 20px; height: 20px"></i>
-                <span>Admin Login</span>
+                <i data-lucide="lock" style="width: 18px; height: 18px"></i>
+                <span class="hidden sm:inline">Admin Login</span>
               </button>
             </div>
           </div>
@@ -204,29 +208,29 @@
 
       <div class="max-w-6xl mx-auto px-4 py-8">
         <!-- Navigation -->
-        <div class="flex items-center space-x-2 mb-6">
+        <div class="flex items-center space-x-2 mb-6 overflow-x-auto pb-2">
           <button
             onclick="app.setView('home')"
             id="navHome"
-            class="flex items-center space-x-2 px-4 py-2 rounded-lg transition bg-white dark:bg-gray-800 shadow-sm text-blue-600 dark:text-purple-400"
+            class="flex items-center space-x-2 px-3 sm:px-4 py-2 rounded-lg transition bg-white dark:bg-gray-800 shadow-sm text-blue-600 dark:text-purple-400 whitespace-nowrap text-sm sm:text-base"
           >
-            <i data-lucide="home" style="width: 18px; height: 18px"></i>
+            <i data-lucide="home" style="width: 16px; height: 16px"></i>
             <span>All Posts</span>
           </button>
           <button
             onclick="app.setView('math')"
             id="navMath"
-            class="flex items-center space-x-2 px-4 py-2 rounded-lg transition text-gray-600 dark:text-gray-300 hover:bg-white dark:hover:bg-violet-500/10"
+            class="flex items-center space-x-2 px-3 sm:px-4 py-2 rounded-lg transition text-gray-600 dark:text-gray-300 hover:bg-white dark:hover:bg-violet-500/10 whitespace-nowrap text-sm sm:text-base"
           >
-            <i data-lucide="book-open" style="width: 18px; height: 18px"></i>
+            <i data-lucide="book-open" style="width: 16px; height: 16px"></i>
             <span>Math</span>
           </button>
           <button
             onclick="app.setView('cp')"
             id="navCp"
-            class="flex items-center space-x-2 px-4 py-2 rounded-lg transition text-gray-600 dark:text-gray-300 hover:bg-white dark:hover:bg-violet-500/10"
+            class="flex items-center space-x-2 px-3 sm:px-4 py-2 rounded-lg transition text-gray-600 dark:text-gray-300 hover:bg-white dark:hover:bg-violet-500/10 whitespace-nowrap text-sm sm:text-base"
           >
-            <i data-lucide="code" style="width: 18px; height: 18px"></i>
+            <i data-lucide="code" style="width: 16px; height: 16px"></i>
             <span>Competitive Programming</span>
           </button>
         </div>
@@ -401,17 +405,18 @@
         </div>
 
         <!-- Single Post View -->
+        <!-- Single Post View -->
         <div
           id="postView"
-          class="hidden bg-white dark:bg-black dark:border dark:border-violet-500/30 rounded-xl shadow-sm p-8"
+          class="hidden bg-white dark:bg-black dark:border dark:border-violet-500/30 rounded-xl shadow-sm p-4 sm:p-8"
         >
           <div class="mb-6">
             <div class="flex items-start justify-between mb-4">
               <h1
                 id="postViewTitle"
-                class="text-3xl font-bold text-gray-900 dark:text-white"
+                class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white pr-2"
               ></h1>
-              <div id="postActions" class="hidden flex space-x-2">
+              <div id="postActions" class="hidden flex space-x-2 flex-shrink-0">
                 <button
                   onclick="app.editCurrentPost()"
                   class="p-2 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition"

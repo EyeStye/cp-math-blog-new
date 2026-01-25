@@ -511,13 +511,13 @@ const app = {
 
     ["navHome", "navMath", "navCp"].forEach((id) => {
       document.getElementById(id).className =
-        "flex items-center space-x-2 px-4 py-2 rounded-lg transition text-gray-600 dark:text-gray-400 hover:bg-white dark:hover:bg-violet-500/10";
+        "flex items-center space-x-2 px-3 sm:px-4 py-2 rounded-lg transition text-gray-600 dark:text-gray-300 hover:bg-white dark:hover:bg-violet-500/10 whitespace-nowrap text-sm sm:text-base";
     });
 
     const activeNav =
       view === "home" ? "navHome" : view === "math" ? "navMath" : "navCp";
     document.getElementById(activeNav).className =
-      "flex items-center space-x-2 px-4 py-2 rounded-lg transition bg-white dark:bg-violet-500/10 dark:border dark:border-violet-500/50 shadow-sm text-blue-600 dark:text-violet-400";
+      "flex items-center space-x-2 px-3 sm:px-4 py-2 rounded-lg transition bg-white dark:bg-violet-500/10 dark:border dark:border-violet-500/50 shadow-sm text-blue-600 dark:text-violet-400 whitespace-nowrap text-sm sm:text-base";
 
     document.getElementById("searchSection").classList.remove("hidden");
     document.getElementById("postForm").classList.add("hidden");

@@ -22,11 +22,13 @@ header {
 .dark header {
   background-color: rgba(0, 0, 0, 0.3) !important;
 }
+
 #passwordSetupModal > div,
 #loginModal > div {
   backdrop-filter: blur(40px);
   -webkit-backdrop-filter: blur(40px);
 }
+
 .line-clamp-2 {
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -36,4 +38,39 @@ header {
 
 .hidden {
   display: none !important;
+}
+
+/* Mobile responsive improvements */
+@media (max-width: 640px) {
+  /* Better spacing on mobile */
+  .max-w-6xl {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Adjust post content font size on mobile */
+  #postViewContent {
+    font-size: 15px !important;
+    line-height: 1.7 !important;
+  }
+
+  /* Make code blocks scrollable on mobile */
+  #postViewContent pre {
+    overflow-x: auto;
+    font-size: 13px;
+  }
+
+  /* Better tag wrapping on mobile */
+  #postViewTags,
+  #selectedTags,
+  #suggestedTags {
+    max-width: 100%;
+  }
+}
+
+/* Improve touch targets on mobile */
+@media (hover: none) and (pointer: coarse) {
+  button {
+    min-height: 44px;
+  }
 }
