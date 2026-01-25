@@ -105,19 +105,26 @@ const app = {
 
   setHashForPost(postId) {
     if (!postId) {
-      history.replaceState(null, "", location.pathname + location.search);
+      history.pushState(null, "", location.pathname + location.search);
       return;
     }
     const url = new URL(location.href);
     url.hash = `post=${encodeURIComponent(postId)}`;
-    history.replaceState(null, "", url.toString());
+    history.pushState(null, "", url.toString());
   },
 
   loadFromHash() {
     const hash = (location.hash || "").replace(/^#/, "");
     const params = new URLSearchParams(hash);
     const postId = params.get("post");
-    if (postId) this.viewPost(postId);
+    if (postId) {
+      this.viewPost(postId);
+    } else {
+      // If no hash, show the home view
+      if (this.state.selectedPost) {
+        this.backToList();
+      }
+    }
   },
 
   async init() {
@@ -126,6 +133,7 @@ const app = {
     await this.loadPosts();
     this.loadFromHash();
     window.addEventListener("hashchange", () => this.loadFromHash());
+    window.addEventListener("popstate", () => this.loadFromHash());
 
     this.setupEventListeners();
     this.updateSuggestedTags();
