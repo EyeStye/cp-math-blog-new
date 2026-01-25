@@ -1,9 +1,15 @@
 body {
-  font-family:
-    Inter,
-    system-ui,
-    -apple-system,
-    sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/* Blog post content uses Arial */
+#postViewContent,
+#postViewContent p,
+#postViewContent li,
+#postViewContent h1,
+#postViewContent h2,
+#postViewContent h3 {
+  font-family: Arial, sans-serif;
 }
 
 .line-clamp-2 {
