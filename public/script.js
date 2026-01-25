@@ -122,7 +122,7 @@ const app = {
 
   async init() {
     await this.checkAuth();
-    await this.loadTheme();
+    this.loadTheme(); // Now loads from localStorage instead of API
     await this.loadPosts();
     this.loadFromHash();
     window.addEventListener("hashchange", () => this.loadFromHash());
@@ -152,13 +152,10 @@ const app = {
     }
   },
 
-  async loadTheme() {
-    try {
-      const result = await api.get("/settings/theme");
-      this.state.theme = result.value || "light";
-    } catch {
-      this.state.theme = "light";
-    }
+  loadTheme() {
+    // Load theme from localStorage instead of database
+    const savedTheme = localStorage.getItem("theme");
+    this.state.theme = savedTheme || "light";
     this.applyTheme();
   },
 
@@ -182,13 +179,10 @@ const app = {
     }
   },
 
-  async toggleTheme() {
+  toggleTheme() {
+    // Toggle theme and save to localStorage instead of database
     this.state.theme = this.state.theme === "light" ? "dark" : "light";
-    try {
-      await api.post("/settings/theme", { value: this.state.theme });
-    } catch (error) {
-      console.log("Failed to save theme preference");
-    }
+    localStorage.setItem("theme", this.state.theme);
     this.applyTheme();
   },
 
