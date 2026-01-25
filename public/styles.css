@@ -22,7 +22,11 @@ header {
 .dark header {
   background-color: rgba(0, 0, 0, 0.3) !important;
 }
-
+#passwordSetupModal > div,
+#loginModal > div {
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+}
 .line-clamp-2 {
   display: -webkit-box;
   -webkit-line-clamp: 2;
