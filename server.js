@@ -68,12 +68,12 @@ function initDatabase() {
     )
   `);
 
-  db.run(`
-    CREATE TABLE IF NOT EXISTS settings (
-      key TEXT PRIMARY KEY,
-      value TEXT NOT NULL
-    )
-  `);
+  // db.run(`
+  //   CREATE TABLE IF NOT EXISTS settings (
+  //     key TEXT PRIMARY KEY,
+  //     value TEXT NOT NULL
+  //   )
+  // `);
 }
 
 // Middleware to check if user is authenticated
@@ -280,34 +280,34 @@ app.delete("/api/posts/:id", isAuthenticated, (req, res) => {
 // ===== SETTINGS ROUTES =====
 
 // Get setting
-app.get("/api/settings/:key", (req, res) => {
-  db.get(
-    "SELECT value FROM settings WHERE key = ?",
-    [req.params.key],
-    (err, row) => {
-      if (err) {
-        return res.status(500).json({ error: "Database error" });
-      }
-      res.json({ value: row ? row.value : null });
-    },
-  );
-});
+// app.get("/api/settings/:key", (req, res) => {
+//   db.get(
+//     "SELECT value FROM settings WHERE key = ?",
+//     [req.params.key],
+//     (err, row) => {
+//       if (err) {
+//         return res.status(500).json({ error: "Database error" });
+//       }
+//       res.json({ value: row ? row.value : null });
+//     },
+//   );
+// });
 
 // Set setting
-app.post("/api/settings/:key", (req, res) => {
-  const { value } = req.body;
+// app.post("/api/settings/:key", (req, res) => {
+//   const { value } = req.body;
 
-  db.run(
-    `INSERT OR REPLACE INTO settings (key, value) VALUES (?, ?)`,
-    [req.params.key, value],
-    (err) => {
-      if (err) {
-        return res.status(500).json({ error: "Failed to save setting" });
-      }
-      res.json({ success: true });
-    },
-  );
-});
+//   db.run(
+//     `INSERT OR REPLACE INTO settings (key, value) VALUES (?, ?)`,
+//     [req.params.key, value],
+//     (err) => {
+//       if (err) {
+//         return res.status(500).json({ error: "Failed to save setting" });
+//       }
+//       res.json({ success: true });
+//     },
+//   );
+// });
 
 // Serve index.html for all other routes (SPA support)
 app.get("*", (req, res) => {
