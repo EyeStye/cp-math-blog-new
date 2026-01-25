@@ -37,7 +37,7 @@ header {
 }
 
 .hidden {
-  display: none !important;
+  display: none;
 }
 
 /* Mobile responsive improvements */
