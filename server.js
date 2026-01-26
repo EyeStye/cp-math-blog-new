@@ -37,11 +37,11 @@ app.use(
 
 // Initialize SQLite database
 // Use Railway's persistent volume if available, otherwise use local path
+// Use Railway's persistent volume if available, otherwise use local path
 const DATA_DIR = process.env.RAILWAY_VOLUME_MOUNT_PATH || "./data";
 const dbPath = path.join(DATA_DIR, "blog.db");
 
 // Ensure data directory exists
-const fs = require("fs");
 if (!fs.existsSync(DATA_DIR)) {
   fs.mkdirSync(DATA_DIR, { recursive: true });
   console.log(`Created data directory at ${DATA_DIR}`);
@@ -55,6 +55,9 @@ const db = new sqlite3.Database(dbPath, (err) => {
     console.error("Error opening database:", err);
   } else {
     console.log(`Connected to SQLite database at ${dbPath}`);
+    initDatabase();
+  }
+});
 
 // Create tables if they don't exist
 function initDatabase() {
@@ -78,13 +81,6 @@ function initDatabase() {
       updated INTEGER NOT NULL
     )
   `);
-
-  // db.run(`
-  //   CREATE TABLE IF NOT EXISTS settings (
-  //     key TEXT PRIMARY KEY,
-  //     value TEXT NOT NULL
-  //   )
-  // `);
 }
 
 // Middleware to check if user is authenticated
