@@ -633,23 +633,21 @@ const app = {
 
     const categoryBadge =
       post.category === "math"
-        ? '<span class="px-3 py-1 rounded-full bg-blue-100 text-blue-800 dark:bg-blue-500/20 dark:border dark:border-blue-500/50 dark:text-blue-400">Mathematics</span>'
-        : '<span class="px-3 py-1 rounded-full bg-purple-100 text-purple-800 dark:bg-violet-500/20 dark:border dark:border-violet-500/50 dark:text-violet-400">Competitive Programming</span>';
+        ? '<span class="px-3 py-1 rounded-full bg-blue-100 text-blue-800 dark:bg-blue-500/20 dark:text-blue-400">Mathematics</span>'
+        : '<span class="px-3 py-1 rounded-full bg-purple-100 text-purple-800 dark:bg-violet-500/20 dark:text-violet-400">Competitive Programming</span>';
 
     const difficultyBadge = `<span class="px-3 py-1 rounded-full ${this.difficultyColors[post.difficulty]}">${post.difficulty.charAt(0).toUpperCase() + post.difficulty.slice(1)}</span>`;
 
     const date = this.formatDate(post.timestamp);
 
     document.getElementById("postViewMeta").innerHTML = `
-  <div class="flex items-center gap-3">
-    ${categoryBadge}
-    ${difficultyBadge}
-  </div>
-  <div class="flex items-center space-x-1">
-    <i data-lucide="calendar" style="width: 16px; height: 16px;"></i>
-    <span>${date}</span>
-  </div>
-`;
+      ${categoryBadge}
+      ${difficultyBadge}
+      <div class="flex items-center space-x-1">
+        <i data-lucide="calendar" style="width: 16px; height: 16px;"></i>
+        <span>${date}</span>
+      </div>
+    `;
 
     document.getElementById("postViewTags").innerHTML = post.tags
       .map(
