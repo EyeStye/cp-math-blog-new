@@ -212,26 +212,32 @@
           <button
             onclick="app.setView('home')"
             id="navHome"
-            class="flex items-center space-x-2 px-3 sm:px-4 py-2 rounded-lg transition bg-white dark:bg-gray-800 shadow-sm text-blue-600 dark:text-purple-400 whitespace-nowrap text-sm sm:text-base"
+            class="group flex items-center space-x-2 px-3 py-2 rounded-lg transition bg-white dark:bg-gray-800 shadow-sm text-blue-600 dark:text-purple-400 text-sm sm:text-base"
           >
             <i data-lucide="home" style="width: 16px; height: 16px"></i>
-            <span>All Posts</span>
+            <span class="hidden group-hover:inline whitespace-nowrap"
+              >All Posts</span
+            >
           </button>
           <button
             onclick="app.setView('math')"
             id="navMath"
-            class="flex items-center space-x-2 px-3 sm:px-4 py-2 rounded-lg transition text-gray-600 dark:text-gray-300 hover:bg-white dark:hover:bg-violet-500/10 whitespace-nowrap text-sm sm:text-base"
+            class="group flex items-center space-x-2 px-3 py-2 rounded-lg transition text-gray-600 dark:text-gray-300 hover:bg-white dark:hover:bg-violet-500/10 text-sm sm:text-base"
           >
-            <i data-lucide="sigma" style="width: 16px; height: 16px"></i>
-            <span>Math</span>
+            <i data-lucide="book-open" style="width: 16px; height: 16px"></i>
+            <span class="hidden group-hover:inline whitespace-nowrap"
+              >Math</span
+            >
           </button>
           <button
             onclick="app.setView('cp')"
             id="navCp"
-            class="flex items-center space-x-2 px-3 sm:px-4 py-2 rounded-lg transition text-gray-600 dark:text-gray-300 hover:bg-white dark:hover:bg-violet-500/10 whitespace-nowrap text-sm sm:text-base"
+            class="group flex items-center space-x-2 px-3 py-2 rounded-lg transition text-gray-600 dark:text-gray-300 hover:bg-white dark:hover:bg-violet-500/10 text-sm sm:text-base"
           >
             <i data-lucide="code" style="width: 16px; height: 16px"></i>
-            <span>Competitive Programming</span>
+            <span class="hidden group-hover:inline whitespace-nowrap"
+              >Competitive Programming</span
+            >
           </button>
         </div>
 
