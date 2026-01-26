@@ -517,7 +517,7 @@ const app = {
     const activeNav =
       view === "home" ? "navHome" : view === "math" ? "navMath" : "navCp";
     document.getElementById(activeNav).className =
-      "group flex items-center px-3 py-2 rounded-lg transition-all duration-300 bg-white dark:bg-violet-500/10 dark:border dark:border-violet-500/50 text-blue-600 dark:text-violet-400 text-sm sm:text-base overflow-hidden";
+      "group flex items-center px-3 py-2 rounded-lg transition-all duration-300 bg-white dark:bg-violet-500/10 text-blue-600 dark:text-violet-400 text-sm sm:text-base overflow-hidden";
 
     document.getElementById("searchSection").classList.remove("hidden");
     document.getElementById("postForm").classList.add("hidden");
