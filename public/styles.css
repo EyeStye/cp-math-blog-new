@@ -30,7 +30,31 @@ header {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }
+.dark #navHome:not(.active),
+.dark #navMath:not(.active),
+.dark #navCp:not(.active) {
+  background-color: rgba(139, 92, 246, 0.1) !important;
+}
 
+/* Remove focus outline on navigation buttons */
+#navHome,
+#navMath,
+#navCp {
+  outline: none;
+}
+
+#navHome:focus,
+#navMath:focus,
+#navCp:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+#passwordSetupModal > div,
+#loginModal > div {
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+}
 #navHome.active,
 #navMath.active,
 #navCp.active {
