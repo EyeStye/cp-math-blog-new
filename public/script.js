@@ -897,36 +897,34 @@ const app = {
         <p class="text-gray-600 dark:text-gray-300 mb-4 line-clamp-2">
           ${post.description}
         </p>
-        <div class="flex items-center justify-between">
-          <div class="flex flex-wrap gap-2">
-            <span class="px-2 py-1 rounded text-xs ${post.category === "math" ? "bg-blue-100 text-blue-800 dark:bg-blue-500/20 dark:border dark:border-blue-500/50 dark:text-blue-400" : "bg-purple-100 text-purple-800 dark:bg-violet-500/20 dark:border dark:border-violet-500/50 dark:text-violet-400"}">
-              ${post.category === "math" ? "Math" : "CP"}
-            </span>
-            ${post.tags
-              .slice(0, 4)
-              .map(
-                (tag) => `
-              <span class="px-2 py-1 bg-gray-100 dark:bg-violet-500/10 text-gray-700 dark:text-violet-300 text-xs rounded">
-                ${tag}
-              </span>
-            `,
-              )
-              .join("")}
-            ${
-              post.tags.length > 4
-                ? `
-              <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 text-xs rounded">
-                +${post.tags.length - 4}
-              </span>
-            `
-                : ""
-            }
-          </div>
-          <div class="flex items-center space-x-1 text-sm text-gray-500 dark:text-gray-400">
-            <i data-lucide="clock" style="width: 14px; height: 14px;"></i>
-            <span>${this.formatDate(post.timestamp)}</span>
-          </div>
-        </div>
+        <div class="flex flex-wrap gap-2 mb-3">
+  <span class="px-2 py-1 rounded text-xs ${post.category === "math" ? "bg-blue-100 text-blue-800 dark:bg-blue-500/20 dark:border dark:border-blue-500/50 dark:text-blue-400" : "bg-purple-100 text-purple-800 dark:bg-violet-500/20 dark:border dark:border-violet-500/50 dark:text-violet-400"}">
+    ${post.category === "math" ? "Math" : "CP"}
+  </span>
+  ${post.tags
+    .slice(0, 4)
+    .map(
+      (tag) => `
+    <span class="px-2 py-1 bg-gray-100 dark:bg-violet-500/10 text-gray-700 dark:text-violet-300 text-xs rounded">
+      ${tag}
+    </span>
+  `,
+    )
+    .join("")}
+  ${
+    post.tags.length > 4
+      ? `
+    <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 text-xs rounded">
+      +${post.tags.length - 4}
+    </span>
+  `
+      : ""
+  }
+</div>
+<div class="flex items-center justify-end space-x-1 text-sm text-gray-500 dark:text-gray-400">
+  <i data-lucide="clock" style="width: 14px; height: 14px;"></i>
+  <span>${this.formatDate(post.timestamp)}</span>
+</div>
       </div>
     `,
       )
