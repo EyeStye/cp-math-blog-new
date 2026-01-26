@@ -887,23 +887,18 @@ const app = {
   class="bg-white dark:bg-black dark:border dark:border-violet-500/30 dark:hover:border-violet-500/50 rounded-xl shadow-sm p-6 hover:shadow-md transition cursor-pointer"
 >
   <div class="flex items-start justify-between mb-3">
-    <h2 class="text-xl font-bold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-violet-400 transition flex-1 pr-3">
+    <h2 class="text-xl font-bold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-violet-400 transition">
       ${post.title}
     </h2>
-    <div class="flex items-center space-x-2 flex-shrink-0">
-      <div class="flex items-center space-x-1 text-sm text-gray-500 dark:text-gray-400">
-        <i data-lucide="clock" style="width: 14px; height: 14px;"></i>
-        <span>${this.formatDate(post.timestamp)}</span>
-      </div>
-      <span class="px-3 py-1 rounded-full text-sm ${this.difficultyColors[post.difficulty]}">
-        ${post.difficulty}
-      </span>
-    </div>
+    <span class="px-3 py-1 rounded-full text-sm ${this.difficultyColors[post.difficulty]}">
+      ${post.difficulty}
+    </span>
   </div>
-        <p class="text-gray-600 dark:text-gray-300 mb-4 line-clamp-2">
-          ${post.description}
-        </p>
-        <div class="flex flex-wrap gap-2 mb-3">
+  <p class="text-gray-600 dark:text-gray-300 mb-4 line-clamp-2">
+    ${post.description}
+  </p>
+  <div class="flex items-center justify-between">
+    <div class="flex flex-wrap gap-2">
   <span class="px-2 py-1 rounded text-xs ${post.category === "math" ? "bg-blue-100 text-blue-800 dark:bg-blue-500/20 dark:border dark:border-blue-500/50 dark:text-blue-400" : "bg-purple-100 text-purple-800 dark:bg-violet-500/20 dark:border dark:border-violet-500/50 dark:text-violet-400"}">
     ${post.category === "math" ? "Math" : "CP"}
   </span>
@@ -927,7 +922,10 @@ const app = {
       : ""
   }
 </div>
-
+<div class="flex items-center space-x-1 text-sm text-gray-500 dark:text-gray-400 flex-shrink-0">
+  <i data-lucide="clock" style="width: 14px; height: 14px;"></i>
+  <span>${this.formatDate(post.timestamp)}</span>
+</div>
       </div>
     `,
       )
