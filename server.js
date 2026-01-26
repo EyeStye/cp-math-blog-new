@@ -36,6 +36,7 @@ app.use(
 );
 
 // Initialize SQLite database
+const dbPath = process.env.DATABASE_PATH || "./blog.db";
 const db = new sqlite3.Database("./blog.db", (err) => {
   if (err) {
     console.error("Error opening database:", err);
