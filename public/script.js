@@ -652,7 +652,7 @@ const app = {
     document.getElementById("postViewTags").innerHTML = post.tags
       .map(
         (tag) => `
-      <span class="px-3 py-1 bg-gradient-to-r from-blue-100 to-purple-100 dark:from-violet-500/20 dark:to-purple-500/20 dark:border dark:border-violet-500/50 text-blue-800 dark:text-violet-300 text-sm rounded-full font-medium">
+      <span class="px-3 py-1 bg-gradient-to-r from-blue-100 to-purple-100 dark:from-violet-500/20 dark:to-purple-500/20 text-blue-800 dark:text-violet-300 text-sm rounded-full font-medium">
         ${tag}
       </span>
     `,
