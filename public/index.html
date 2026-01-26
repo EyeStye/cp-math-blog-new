@@ -212,30 +212,45 @@
           <button
             onclick="app.setView('home')"
             id="navHome"
-            class="group flex items-center space-x-2 px-3 py-2 rounded-lg transition bg-white dark:bg-gray-800 shadow-sm text-blue-600 dark:text-purple-400 text-sm sm:text-base"
+            class="group flex items-center px-3 py-2 rounded-lg transition-all duration-300 bg-white dark:bg-gray-800 shadow-sm text-blue-600 dark:text-purple-400 text-sm sm:text-base overflow-hidden"
           >
-            <i data-lucide="home" style="width: 16px; height: 16px"></i>
-            <span class="hidden group-hover:inline whitespace-nowrap"
+            <i
+              data-lucide="home"
+              style="width: 16px; height: 16px"
+              class="flex-shrink-0"
+            ></i>
+            <span
+              class="max-w-0 group-hover:max-w-xs group-hover:ml-2 overflow-hidden whitespace-nowrap transition-all duration-300"
               >All Posts</span
             >
           </button>
           <button
             onclick="app.setView('math')"
             id="navMath"
-            class="group flex items-center space-x-2 px-3 py-2 rounded-lg transition text-gray-600 dark:text-gray-300 hover:bg-white dark:hover:bg-violet-500/10 text-sm sm:text-base"
+            class="group flex items-center px-3 py-2 rounded-lg transition-all duration-300 text-gray-600 dark:text-gray-300 hover:bg-white dark:hover:bg-violet-500/10 text-sm sm:text-base overflow-hidden"
           >
-            <i data-lucide="book-open" style="width: 16px; height: 16px"></i>
-            <span class="hidden group-hover:inline whitespace-nowrap"
+            <i
+              data-lucide="book-open"
+              style="width: 16px; height: 16px"
+              class="flex-shrink-0"
+            ></i>
+            <span
+              class="max-w-0 group-hover:max-w-xs group-hover:ml-2 overflow-hidden whitespace-nowrap transition-all duration-300"
               >Math</span
             >
           </button>
           <button
             onclick="app.setView('cp')"
             id="navCp"
-            class="group flex items-center space-x-2 px-3 py-2 rounded-lg transition text-gray-600 dark:text-gray-300 hover:bg-white dark:hover:bg-violet-500/10 text-sm sm:text-base"
+            class="group flex items-center px-3 py-2 rounded-lg transition-all duration-300 text-gray-600 dark:text-gray-300 hover:bg-white dark:hover:bg-violet-500/10 text-sm sm:text-base overflow-hidden"
           >
-            <i data-lucide="code" style="width: 16px; height: 16px"></i>
-            <span class="hidden group-hover:inline whitespace-nowrap"
+            <i
+              data-lucide="code"
+              style="width: 16px; height: 16px"
+              class="flex-shrink-0"
+            ></i>
+            <span
+              class="max-w-0 group-hover:max-w-xs group-hover:ml-2 overflow-hidden whitespace-nowrap transition-all duration-300"
               >Competitive Programming</span
             >
           </button>
