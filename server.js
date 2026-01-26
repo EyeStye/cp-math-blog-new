@@ -170,6 +170,48 @@ app.post("/api/auth/logout", (req, res) => {
   res.json({ success: true });
 });
 
+// Change password
+app.post("/api/auth/change-password", isAuthenticated, (req, res) => {
+  const { currentPassword, newPassword } = req.body;
+
+  if (!currentPassword || !newPassword) {
+    return res.status(400).json({ error: "All fields are required" });
+  }
+
+  if (newPassword.length < 4) {
+    return res
+      .status(400)
+      .json({ error: "New password must be at least 4 characters" });
+  }
+
+  db.get("SELECT password FROM admin LIMIT 1", async (err, row) => {
+    if (err) {
+      return res.status(500).json({ error: "Database error" });
+    }
+    if (!row) {
+      return res.status(400).json({ error: "No password set" });
+    }
+
+    const match = await bcrypt.compare(currentPassword, row.password);
+    if (!match) {
+      return res.status(401).json({ error: "Current password is incorrect" });
+    }
+
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+    db.run(
+      "UPDATE admin SET password = ? WHERE id = (SELECT id FROM admin LIMIT 1)",
+      [hashedPassword],
+      (err) => {
+        if (err) {
+          return res.status(500).json({ error: "Failed to change password" });
+        }
+        res.json({ success: true });
+      },
+    );
+  });
+});
+
 // ===== POST ROUTES =====
 
 // Get all posts

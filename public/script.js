@@ -252,6 +252,80 @@ const app = {
     document.getElementById("loginError").classList.add("hidden");
   },
 
+  showChangePassword() {
+    document.getElementById("changePasswordModal").classList.remove("hidden");
+    document.getElementById("currentPasswordInput").value = "";
+    document.getElementById("newPasswordInput").value = "";
+    document.getElementById("confirmPasswordInput").value = "";
+    document.getElementById("changePasswordError").classList.add("hidden");
+    document.getElementById("changePasswordSuccess").classList.add("hidden");
+    setTimeout(
+      () => document.getElementById("currentPasswordInput").focus(),
+      100,
+    );
+  },
+
+  async changePassword() {
+    const currentPassword = document.getElementById(
+      "currentPasswordInput",
+    ).value;
+    const newPassword = document.getElementById("newPasswordInput").value;
+    const confirmPassword = document.getElementById(
+      "confirmPasswordInput",
+    ).value;
+    const errorEl = document.getElementById("changePasswordError");
+    const successEl = document.getElementById("changePasswordSuccess");
+
+    errorEl.classList.add("hidden");
+    successEl.classList.add("hidden");
+
+    if (!currentPassword || !newPassword || !confirmPassword) {
+      errorEl.textContent = "All fields are required";
+      errorEl.classList.remove("hidden");
+      return;
+    }
+
+    if (newPassword.length < 4) {
+      errorEl.textContent = "New password must be at least 4 characters long";
+      errorEl.classList.remove("hidden");
+      return;
+    }
+
+    if (newPassword !== confirmPassword) {
+      errorEl.textContent = "New passwords do not match";
+      errorEl.classList.remove("hidden");
+      return;
+    }
+
+    try {
+      await api.post("/auth/change-password", {
+        currentPassword,
+        newPassword,
+      });
+      successEl.textContent = "Password changed successfully!";
+      successEl.classList.remove("hidden");
+      document.getElementById("currentPasswordInput").value = "";
+      document.getElementById("newPasswordInput").value = "";
+      document.getElementById("confirmPasswordInput").value = "";
+
+      setTimeout(() => {
+        this.cancelChangePassword();
+      }, 2000);
+    } catch (error) {
+      errorEl.textContent = error.message || "Failed to change password";
+      errorEl.classList.remove("hidden");
+    }
+  },
+
+  cancelChangePassword() {
+    document.getElementById("changePasswordModal").classList.add("hidden");
+    document.getElementById("currentPasswordInput").value = "";
+    document.getElementById("newPasswordInput").value = "";
+    document.getElementById("confirmPasswordInput").value = "";
+    document.getElementById("changePasswordError").classList.add("hidden");
+    document.getElementById("changePasswordSuccess").classList.add("hidden");
+  },
+
   async logout() {
     try {
       await api.post("/auth/logout");
@@ -268,10 +342,12 @@ const app = {
     if (this.state.isAuthenticated) {
       document.getElementById("newPostBtn").classList.remove("hidden");
       document.getElementById("logoutBtn").classList.remove("hidden");
+      document.getElementById("changePasswordBtn").classList.remove("hidden");
       document.getElementById("loginBtn").classList.add("hidden");
     } else {
       document.getElementById("newPostBtn").classList.add("hidden");
       document.getElementById("logoutBtn").classList.add("hidden");
+      document.getElementById("changePasswordBtn").classList.add("hidden");
       document.getElementById("loginBtn").classList.remove("hidden");
     }
   },
@@ -282,6 +358,10 @@ const app = {
       .addEventListener("keypress", (e) => {
         if (e.key === "Enter") this.setupPassword();
       });
+
+    document
+      .getElementById("changePasswordBtn")
+      .addEventListener("click", () => this.showChangePassword());
 
     document
       .getElementById("loginPasswordInput")
