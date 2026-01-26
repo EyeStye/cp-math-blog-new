@@ -23,6 +23,44 @@ header {
   background-color: rgba(0, 0, 0, 0.3) !important;
 }
 
+/* Navigation bar blur effect */
+#navHome,
+#navMath,
+#navCp {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+#navHome.active,
+#navMath.active,
+#navCp.active {
+  background-color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.dark #navHome.active,
+.dark #navMath.active,
+.dark #navCp.active {
+  background-color: rgba(139, 92, 246, 0.2) !important;
+}
+
+#navHome:not(.active),
+#navMath:not(.active),
+#navCp:not(.active) {
+  background-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.dark #navHome:not(.active),
+.dark #navMath:not(.active),
+.dark #navCp:not(.active) {
+  background-color: rgba(139, 92, 246, 0.1) !important;
+}
+
+#passwordSetupModal > div,
+#loginModal > div {
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+}
+
 #passwordSetupModal > div,
 #loginModal > div {
   backdrop-filter: blur(40px);
