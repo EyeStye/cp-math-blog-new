@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 const session = require("express-session");
 const cors = require("cors");
 const path = require("path");
-
+const fs = require("fs");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -36,15 +36,25 @@ app.use(
 );
 
 // Initialize SQLite database
-const dbPath = process.env.DATABASE_PATH || "./blog.db";
-const db = new sqlite3.Database("./blog.db", (err) => {
+// Use Railway's persistent volume if available, otherwise use local path
+const DATA_DIR = process.env.RAILWAY_VOLUME_MOUNT_PATH || "./data";
+const dbPath = path.join(DATA_DIR, "blog.db");
+
+// Ensure data directory exists
+const fs = require("fs");
+if (!fs.existsSync(DATA_DIR)) {
+  fs.mkdirSync(DATA_DIR, { recursive: true });
+  console.log(`Created data directory at ${DATA_DIR}`);
+}
+
+console.log(`Using database at: ${dbPath}`);
+
+// Initialize SQLite database
+const db = new sqlite3.Database(dbPath, (err) => {
   if (err) {
     console.error("Error opening database:", err);
   } else {
-    console.log("Connected to SQLite database");
-    initDatabase();
-  }
-});
+    console.log(`Connected to SQLite database at ${dbPath}`);
 
 // Create tables if they don't exist
 function initDatabase() {
