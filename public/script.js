@@ -196,20 +196,24 @@ const app = {
 
   async setupPassword() {
     const password = document.getElementById("setupPasswordInput").value;
+    const errorEl = document.getElementById("setupError");
+
     if (!password || password.length < 4) {
-      alert("Password must be at least 4 characters long");
+      errorEl.textContent = "Password must be at least 4 characters long";
+      errorEl.classList.remove("hidden");
       return;
     }
     try {
       await api.post("/auth/setup", { password });
       this.state.isAuthenticated = true;
       this.state.hasPassword = true;
+      errorEl.classList.add("hidden");
       document.getElementById("passwordSetupModal").classList.add("hidden");
       document.getElementById("mainApp").classList.remove("hidden");
       this.updateAuthUI();
-      alert("Password set successfully! You are now logged in.");
     } catch (error) {
-      alert("Failed to set password: " + error.message);
+      errorEl.textContent = "Failed to set password: " + error.message;
+      errorEl.classList.remove("hidden");
     }
   },
 
@@ -224,15 +228,19 @@ const app = {
 
   async login() {
     const password = document.getElementById("loginPasswordInput").value;
+    const errorEl = document.getElementById("loginError");
+
     try {
       await api.post("/auth/login", { password });
       this.state.isAuthenticated = true;
+      errorEl.classList.add("hidden");
       document.getElementById("loginModal").classList.add("hidden");
       document.getElementById("mainApp").classList.remove("hidden");
       document.getElementById("loginPasswordInput").value = "";
       this.updateAuthUI();
     } catch (error) {
-      alert("Incorrect password");
+      errorEl.textContent = "Incorrect password";
+      errorEl.classList.remove("hidden");
       document.getElementById("loginPasswordInput").value = "";
     }
   },
@@ -241,6 +249,7 @@ const app = {
     document.getElementById("loginModal").classList.add("hidden");
     document.getElementById("mainApp").classList.remove("hidden");
     document.getElementById("loginPasswordInput").value = "";
+    document.getElementById("loginError").classList.add("hidden");
   },
 
   async logout() {

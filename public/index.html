@@ -73,6 +73,10 @@
           placeholder="Enter admin password"
           class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
         />
+        <p
+          id="setupError"
+          class="hidden text-red-600 dark:text-red-400 text-sm mb-4"
+        ></p>
         <button
           onclick="app.setupPassword()"
           class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg hover:opacity-90 transition font-medium"
@@ -118,6 +122,10 @@
           placeholder="Enter password"
           class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
         />
+        <p
+          id="loginError"
+          class="hidden text-red-600 dark:text-red-400 text-sm mb-4"
+        ></p>
         <div class="flex space-x-3">
           <button
             onclick="app.login()"
