@@ -484,7 +484,7 @@ const app = {
         class="px-3 py-1 rounded-full text-sm transition ${
           this.state.formData.tags.includes(tag)
             ? "bg-blue-600 text-white"
-            : "bg-gray-100 dark:bg-violet-500/10 dark:border dark:border-violet-500/30 text-gray-700 dark:text-violet-300 hover:bg-gray-200 dark:hover:bg-violet-500/20"
+            : "bg-gray-100 dark:bg-violet-500/10 text-gray-700 dark:text-violet-300 hover:bg-gray-200 dark:hover:bg-violet-500/20"
         }"
       >
         ${tag}
@@ -535,7 +535,7 @@ const app = {
       container.innerHTML = this.state.formData.tags
         .map(
           (tag) => `
-        <span class="inline-flex items-center gap-1 px-3 py-1 bg-blue-100 dark:bg-violet-500/20 dark:border dark:border-violet-500/50 text-blue-800 dark:text-violet-300 rounded-full text-sm">
+        <span class="inline-flex items-center gap-1 px-3 py-1 bg-blue-100 dark:bg-violet-500/20 text-blue-800 dark:text-violet-300 rounded-full text-sm">
           ${tag}
           <button onclick="app.removeTag('${tag}')" class="hover:text-blue-900 dark:hover:text-blue-100 ml-1">×</button>
         </span>
@@ -906,7 +906,7 @@ const app = {
               .slice(0, 4)
               .map(
                 (tag) => `
-              <span class="px-2 py-1 bg-gray-100 dark:bg-violet-500/10 dark:border dark:border-violet-500/30 text-gray-700 dark:text-violet-300 text-xs rounded">
+              <span class="px-2 py-1 bg-gray-100 dark:bg-violet-500/10 text-gray-700 dark:text-violet-300 text-xs rounded">
                 ${tag}
               </span>
             `,
