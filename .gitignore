@@ -1,5 +1,4 @@
 node_modules/
-blog.db
 .env
 *.log
 .DS_Store
