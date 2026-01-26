@@ -97,10 +97,10 @@ const app = {
   },
 
   difficultyColors: {
-    easy: "bg-green-100 text-green-800 dark:bg-green-500/20 dark:text-green-400 dark:border dark:border-green-500/50",
+    easy: "bg-green-100 text-green-800 dark:bg-green-500/20 dark:text-green-400",
     medium:
-      "bg-yellow-100 text-yellow-800 dark:bg-yellow-500/20 dark:text-yellow-400 dark:border dark:border-yellow-500/50",
-    hard: "bg-red-100 text-red-800 dark:bg-red-500/20 dark:text-red-400 dark:border dark:border-red-500/50",
+      "bg-yellow-100 text-yellow-800 dark:bg-yellow-500/20 dark:text-yellow-400",
+    hard: "bg-red-100 text-red-800 dark:bg-red-500/20 dark:text-red-400",
   },
 
   setHashForPost(postId) {
@@ -633,8 +633,8 @@ const app = {
 
     const categoryBadge =
       post.category === "math"
-        ? '<span class="px-3 py-1 rounded-full bg-blue-100 text-blue-800 dark:bg-blue-500/20 dark:border dark:border-blue-500/50 dark:text-blue-400">Mathematics</span>'
-        : '<span class="px-3 py-1 rounded-full bg-purple-100 text-purple-800 dark:bg-violet-500/20 dark:border dark:border-violet-500/50 dark:text-violet-400">Competitive Programming</span>';
+        ? '<span class="px-3 py-1 rounded-full bg-blue-100 text-blue-800 dark:bg-blue-500/20 dark:text-blue-400">Mathematics</span>'
+        : '<span class="px-3 py-1 rounded-full bg-purple-100 text-purple-800 dark:bg-violet-500/20 dark:text-violet-400">Competitive Programming</span>';
 
     const difficultyBadge = `<span class="px-3 py-1 rounded-full ${this.difficultyColors[post.difficulty]}">${post.difficulty.charAt(0).toUpperCase() + post.difficulty.slice(1)}</span>`;
 
