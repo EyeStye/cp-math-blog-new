@@ -69,6 +69,7 @@ const app = {
       difficulty: "medium",
     },
   },
+  initialHistorySet: false,
 
   suggestedTags: {
     math: [
@@ -141,15 +142,21 @@ const app = {
     this.loadTheme();
     await this.loadPosts();
 
-    // If we have a hash on initial load, replace current state with no-hash version first
-    if (location.hash) {
-      const urlWithoutHash = location.pathname + location.search;
-      history.replaceState(null, "", urlWithoutHash);
-      // Then push the hash state so back button works
-      history.pushState(null, "", location.href.split("#")[0] + location.hash);
-    }
+    // If we have a hash on initial load, ensure there's a history entry to go back to
+    const hasHash = !!location.hash;
 
     this.loadFromHash();
+
+    // After loading, if we had a hash, ensure proper history
+    if (hasHash && !this.initialHistorySet) {
+      this.initialHistorySet = true;
+      // Replace current entry to include both the back state and current state
+      const currentUrl = location.href;
+      const urlWithoutHash = location.pathname + location.search;
+      history.replaceState({ isBack: true }, "", urlWithoutHash);
+      history.pushState({ isPost: true }, "", currentUrl);
+    }
+
     window.addEventListener("hashchange", () => this.loadFromHash());
     window.addEventListener("popstate", () => this.loadFromHash());
 
