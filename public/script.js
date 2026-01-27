@@ -118,23 +118,30 @@ const app = {
     this.loadTheme();
     await this.loadPosts();
 
-    // If we have a hash on initial load, set up proper history before loading
-    if (location.hash) {
-      const urlWithoutHash = location.pathname + location.search;
-      const currentUrl = location.href;
-
-      // First, replace with no-hash URL
-      history.replaceState(null, "", urlWithoutHash);
-      // Then immediately push the current hash URL
-      history.pushState(null, "", currentUrl);
-    }
+    // Check if we're loading with a hash
+    const hasInitialHash = !!location.hash;
 
     this.loadFromHash();
 
+    // If we loaded with a hash (refresh on post page), manually create back history
+    if (hasInitialHash && this.state.selectedPost) {
+      // Wait a bit for the post to fully load, then fix history
+      setTimeout(() => {
+        const currentUrl = location.href;
+        const urlWithoutHash = location.pathname + location.search;
+
+        // Go back once (will show blank), then immediately forward
+        history.back();
+
+        setTimeout(() => {
+          history.pushState(null, "", urlWithoutHash);
+          history.pushState(null, "", currentUrl);
+        }, 50);
+      }, 100);
+    }
+
     window.addEventListener("hashchange", () => this.loadFromHash());
-    window.addEventListener("popstate", (e) => {
-      this.loadFromHash();
-    });
+    window.addEventListener("popstate", () => this.loadFromHash());
 
     this.setupEventListeners();
     this.updateSuggestedTags();
