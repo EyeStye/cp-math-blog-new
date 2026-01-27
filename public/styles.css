@@ -157,12 +157,13 @@ header {
 .dark #postsList > div::before {
   content: "";
   position: absolute;
-  width: 200px;
-  height: 200px;
+  width: 400px;
+  height: 400px;
   background: radial-gradient(
     circle,
-    rgba(139, 92, 246, 0.3) 0%,
-    transparent 70%
+    rgba(139, 92, 246, 0.15) 0%,
+    rgba(139, 92, 246, 0.08) 30%,
+    transparent 60%
   );
   border-radius: 50%;
   pointer-events: none;
@@ -171,6 +172,7 @@ header {
   left: var(--mouse-x, 50%);
   top: var(--mouse-y, 50%);
   transform: translate(-50%, -50%);
+  filter: blur(20px);
 }
 
 .dark #postsList > div:hover::before {
