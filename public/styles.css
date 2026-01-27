@@ -105,37 +105,24 @@ header {
   align-items: stretch;
 }
 
-/* Force equal width for all posts */
-#postsList {
-  width: 100%;
-}
-
-#postsList > div {
-  width: 100% !important;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-  padding-left: 1.5rem !important;
-  padding-right: 1.5rem !important;
-}
-
-/* Ensure all post cards have consistent full width */
-#postsList > div {
-  width: 100%;
-  max-width: 100%;
-}
 /* Force all post cards to be identical width */
 #postsList {
   display: flex !important;
   flex-direction: column !important;
   width: 100% !important;
+  align-items: stretch !important;
 }
 
 #postsList > div {
   width: 100% !important;
-  max-width: none !important;
-  min-width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
   flex-shrink: 0 !important;
+  flex-grow: 0 !important;
+  flex-basis: auto !important;
   box-sizing: border-box !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }
 
 /* Mobile responsive improvements */
