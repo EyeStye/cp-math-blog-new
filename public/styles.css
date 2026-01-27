@@ -157,8 +157,8 @@ header {
 .dark #postsList > div::before {
   content: "";
   position: absolute;
-  width: 600px;
-  height: 600px;
+  width: 800px;
+  height: 800px;
   background: radial-gradient(
     circle,
     rgba(139, 92, 246, 0.4) 0%,
