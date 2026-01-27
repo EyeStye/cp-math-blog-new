@@ -955,7 +955,7 @@ const app = {
         (post) => `
       <div
   onclick="app.viewPost('${post.id}')"
-  class="w-full bg-white dark:bg-black dark:border dark:border-violet-500/30 dark:hover:border-violet-500/50 rounded-xl shadow-sm p-6 hover:shadow-md transition cursor-pointer"
+  class="bg-white dark:bg-black dark:border dark:border-violet-500/30 dark:hover:border-violet-500/50 rounded-xl shadow-sm p-6 hover:shadow-md transition cursor-pointer"
 >
   <div class="flex items-start justify-between mb-3">
     <h2 class="text-xl font-bold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-violet-400 transition">

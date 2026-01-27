@@ -105,6 +105,7 @@ header {
 /* Fix for equal width post cards - SIMPLIFIED */
 #postsList > div {
   width: 100% !important;
+  box-sizing: border-box !important;
 }
 
 /* Mobile responsive improvements */
