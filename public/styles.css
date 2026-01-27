@@ -102,16 +102,17 @@ header {
   display: none;
 }
 
-/* Fix for equal width post cards - SIMPLIFIED */
-#postsList {
-  width: 100% !important;
+/* Fix for equal width post cards */
+div.max-w-6xl > div#postsList,
+div.max-w-6xl > div > div#postsList {
+  width: calc(100% + 3rem) !important;
+  margin-left: -1.5rem !important;
+  margin-right: -1.5rem !important;
 }
 
-#postsList > div {
+div#postsList > div {
   width: 100% !important;
   box-sizing: border-box !important;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
 }
 
 /* Mobile responsive improvements */
