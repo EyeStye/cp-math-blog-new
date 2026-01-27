@@ -103,16 +103,9 @@ header {
 }
 
 /* Fix for equal width post cards */
-div.max-w-6xl > div#postsList,
-div.max-w-6xl > div > div#postsList {
-  width: calc(100% + 3rem) !important;
-  margin-left: -1.5rem !important;
-  margin-right: -1.5rem !important;
-}
-
-div#postsList > div {
-  width: 100% !important;
-  box-sizing: border-box !important;
+#postsList > div {
+  flex-shrink: 0 !important;
+}sizing: border-box !important;
 }
 
 /* Mobile responsive improvements */
