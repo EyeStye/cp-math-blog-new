@@ -103,19 +103,32 @@ const app = {
     hard: "bg-red-100 text-red-800 dark:bg-red-500/20 dark:text-red-400",
   },
 
-  setHashForPost(postId) {
-    if (!postId) {
-      const newUrl = location.pathname + location.search;
-      if (location.hash) {
-        history.pushState(null, "", newUrl);
-      } else {
-        history.replaceState(null, "", newUrl);
-      }
-      return;
+  async init() {
+    await this.checkAuth();
+    this.loadTheme();
+    await this.loadPosts();
+
+    // If we have a hash on initial load, set up proper history before loading
+    if (location.hash) {
+      const urlWithoutHash = location.pathname + location.search;
+      const currentUrl = location.href;
+
+      // First, replace with no-hash URL
+      history.replaceState(null, "", urlWithoutHash);
+      // Then immediately push the current hash URL
+      history.pushState(null, "", currentUrl);
     }
-    const url = new URL(location.href);
-    url.hash = `post=${encodeURIComponent(postId)}`;
-    history.pushState(null, "", url.toString());
+
+    this.loadFromHash();
+
+    window.addEventListener("hashchange", () => this.loadFromHash());
+    window.addEventListener("popstate", (e) => {
+      this.loadFromHash();
+    });
+
+    this.setupEventListeners();
+    this.updateSuggestedTags();
+    lucide.createIcons();
   },
 
   loadFromHash() {
@@ -141,21 +154,10 @@ const app = {
     this.loadTheme();
     await this.loadPosts();
 
-    // If we have a hash on initial load, set up proper history before loading
-    if (location.hash) {
-      const urlWithoutHash = location.pathname + location.search;
-      const currentUrl = location.href;
-
-      // First, replace with no-hash URL
-      history.replaceState(null, "", urlWithoutHash);
-      // Then immediately push the current hash URL
-      history.pushState(null, "", currentUrl);
-    }
-
     this.loadFromHash();
 
     window.addEventListener("hashchange", () => this.loadFromHash());
-    window.addEventListener("popstate", (e) => {
+    window.addEventListener("popstate", () => {
       this.loadFromHash();
     });
 
@@ -695,7 +697,15 @@ const app = {
 
     lucide.createIcons();
     this.renderMathAndCode();
-    this.setHashForPost(postId);
+
+    // Only push to history if not already viewing this post
+    const currentHash = location.hash.replace(/^#/, "");
+    const currentParams = new URLSearchParams(currentHash);
+    const currentPostId = currentParams.get("post");
+
+    if (currentPostId !== postId) {
+      this.setHashForPost(postId);
+    }
   },
 
   parseContent(content) {
