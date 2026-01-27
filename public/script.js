@@ -118,6 +118,13 @@ const app = {
     const params = new URLSearchParams(hash);
     const postId = params.get("post");
     if (postId) {
+      // If we're loading a post on initial page load (refresh), ensure there's a history entry
+      if (!this.state.selectedPost && window.history.length === 1) {
+        // Push a state without hash first so browser back works
+        const urlWithoutHash = location.pathname + location.search;
+        window.history.replaceState(null, "", urlWithoutHash);
+        window.history.pushState(null, "", location.href);
+      }
       this.viewPost(postId);
     } else {
       // If no hash, show the home view
