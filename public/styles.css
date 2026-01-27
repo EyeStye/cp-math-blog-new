@@ -103,8 +103,15 @@ header {
 }
 
 /* Fix for equal width post cards */
-#postsList > div {
-  flex-shrink: 0 !important;
+.max-w-6xl #postsList {
+  width: 100% !important;
+}
+
+.max-w-6xl #postsList > div {
+  width: 100% !important;
+  min-width: 100% !important;
+  max-width: 100% !important;
+  flex: 0 0 auto !important;
 }
 
 /* Mobile responsive improvements */
