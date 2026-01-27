@@ -138,8 +138,17 @@ const app = {
 
   async init() {
     await this.checkAuth();
-    this.loadTheme(); // Now loads from localStorage instead of API
+    this.loadTheme();
     await this.loadPosts();
+
+    // If we have a hash on initial load, replace current state with no-hash version first
+    if (location.hash) {
+      const urlWithoutHash = location.pathname + location.search;
+      history.replaceState(null, "", urlWithoutHash);
+      // Then push the hash state so back button works
+      history.pushState(null, "", location.href.split("#")[0] + location.hash);
+    }
+
     this.loadFromHash();
     window.addEventListener("hashchange", () => this.loadFromHash());
     window.addEventListener("popstate", () => this.loadFromHash());
