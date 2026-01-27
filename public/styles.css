@@ -107,6 +107,17 @@ header {
   width: 100%;
   max-width: 100%;
 }
+/* Force all post cards to be identical width */
+#postsList {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+#postsList > div {
+  width: 100% !important;
+  max-width: 100% !important;
+  flex-shrink: 0 !important;
+}
 
 /* Mobile responsive improvements */
 @media (max-width: 640px) {
