@@ -108,8 +108,26 @@ const app = {
       history.pushState(null, "", location.pathname + location.search);
       return;
     }
+
     const url = new URL(location.href);
     url.hash = `post=${encodeURIComponent(postId)}`;
+
+    // Check if we're coming from a page refresh (no referrer from same origin in history)
+    if (
+      document.referrer === "" ||
+      !document.referrer.includes(location.host)
+    ) {
+      // This might be a direct link or refresh - ensure we can go back
+      const urlWithoutHash = location.pathname + location.search;
+
+      // Only manipulate history if we don't already have the right setup
+      if (history.length <= 1 || !location.hash) {
+        history.replaceState(null, "", urlWithoutHash);
+        history.pushState(null, "", url.toString());
+        return;
+      }
+    }
+
     history.pushState(null, "", url.toString());
   },
 
@@ -118,27 +136,7 @@ const app = {
     this.loadTheme();
     await this.loadPosts();
 
-    // Check if we're loading with a hash
-    const hasInitialHash = !!location.hash;
-
     this.loadFromHash();
-
-    // If we loaded with a hash (refresh on post page), manually create back history
-    if (hasInitialHash && this.state.selectedPost) {
-      // Wait a bit for the post to fully load, then fix history
-      setTimeout(() => {
-        const currentUrl = location.href;
-        const urlWithoutHash = location.pathname + location.search;
-
-        // Go back once (will show blank), then immediately forward
-        history.back();
-
-        setTimeout(() => {
-          history.pushState(null, "", urlWithoutHash);
-          history.pushState(null, "", currentUrl);
-        }, 50);
-      }, 100);
-    }
 
     window.addEventListener("hashchange", () => this.loadFromHash());
     window.addEventListener("popstate", () => this.loadFromHash());
