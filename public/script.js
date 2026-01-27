@@ -641,13 +641,13 @@ const app = {
     const date = this.formatDate(post.timestamp);
 
     document.getElementById("postViewMeta").innerHTML = `
-      ${categoryBadge}
-      ${difficultyBadge}
-      <div class="flex items-center space-x-1">
-        <i data-lucide="calendar" style="width: 16px; height: 16px;"></i>
-        <span>${date}</span>
-      </div>
-    `;
+  ${categoryBadge}
+  ${difficultyBadge}
+  <div class="flex items-center space-x-1 ml-auto">
+    <i data-lucide="calendar" style="width: 16px; height: 16px;"></i>
+    <span>${date}</span>
+  </div>
+`;
 
     document.getElementById("postViewTags").innerHTML = post.tags
       .map(
