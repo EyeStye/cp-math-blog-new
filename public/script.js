@@ -105,7 +105,12 @@ const app = {
 
   setHashForPost(postId) {
     if (!postId) {
-      history.pushState(null, "", location.pathname + location.search);
+      const newUrl = location.pathname + location.search;
+      if (location.hash) {
+        history.pushState(null, "", newUrl);
+      } else {
+        history.replaceState(null, "", newUrl);
+      }
       return;
     }
     const url = new URL(location.href);
@@ -118,18 +123,15 @@ const app = {
     const params = new URLSearchParams(hash);
     const postId = params.get("post");
     if (postId) {
-      // If we're loading a post on initial page load (refresh), ensure there's a history entry
-      if (!this.state.selectedPost && window.history.length === 1) {
-        // Push a state without hash first so browser back works
-        const urlWithoutHash = location.pathname + location.search;
-        window.history.replaceState(null, "", urlWithoutHash);
-        window.history.pushState(null, "", location.href);
-      }
       this.viewPost(postId);
     } else {
       // If no hash, show the home view
       if (this.state.selectedPost) {
-        this.backToList();
+        this.state.selectedPost = null;
+        document.getElementById("searchSection").classList.remove("hidden");
+        document.getElementById("postView").classList.add("hidden");
+        this.renderPostsList();
+        lucide.createIcons();
       }
     }
   },
