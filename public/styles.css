@@ -102,10 +102,9 @@ header {
   display: none;
 }
 
-/* Ensure all post cards have equal full width */
+/* Fix for equal width post cards - SIMPLIFIED */
 #postsList > div {
   width: 100% !important;
-  max-width: none !important;
 }
 
 /* Mobile responsive improvements */
