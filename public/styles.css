@@ -101,6 +101,9 @@ header {
 .hidden {
   display: none;
 }
+#postsList {
+  align-items: stretch;
+}
 
 /* Force equal width for all posts */
 #postsList {
