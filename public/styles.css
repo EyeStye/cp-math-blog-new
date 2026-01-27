@@ -124,12 +124,15 @@ header {
 #postsList {
   display: flex !important;
   flex-direction: column !important;
+  width: 100% !important;
 }
 
 #postsList > div {
   width: 100% !important;
-  max-width: 100% !important;
+  max-width: none !important;
+  min-width: 100% !important;
   flex-shrink: 0 !important;
+  box-sizing: border-box !important;
 }
 
 /* Mobile responsive improvements */
