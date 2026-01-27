@@ -103,6 +103,16 @@ const app = {
     hard: "bg-red-100 text-red-800 dark:bg-red-500/20 dark:text-red-400",
   },
 
+  setHashForPost(postId) {
+    if (!postId) {
+      history.pushState(null, "", location.pathname + location.search);
+      return;
+    }
+    const url = new URL(location.href);
+    url.hash = `post=${encodeURIComponent(postId)}`;
+    history.pushState(null, "", url.toString());
+  },
+
   async init() {
     await this.checkAuth();
     this.loadTheme();
@@ -135,6 +145,7 @@ const app = {
     const hash = (location.hash || "").replace(/^#/, "");
     const params = new URLSearchParams(hash);
     const postId = params.get("post");
+
     if (postId) {
       this.viewPost(postId);
     } else {
@@ -147,23 +158,6 @@ const app = {
         lucide.createIcons();
       }
     }
-  },
-
-  async init() {
-    await this.checkAuth();
-    this.loadTheme();
-    await this.loadPosts();
-
-    this.loadFromHash();
-
-    window.addEventListener("hashchange", () => this.loadFromHash());
-    window.addEventListener("popstate", () => {
-      this.loadFromHash();
-    });
-
-    this.setupEventListeners();
-    this.updateSuggestedTags();
-    lucide.createIcons();
   },
 
   async checkAuth() {
