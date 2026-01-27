@@ -998,6 +998,7 @@ const app = {
   <span>${this.formatDate(post.timestamp)}</span>
 </div>
       </div>
+      </div>
     `,
       )
       .join("");
