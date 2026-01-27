@@ -827,10 +827,11 @@ const app = {
 
   backToList() {
     this.state.selectedPost = null;
+    this.setHashForPost(null);
     document.getElementById("searchSection").classList.remove("hidden");
     document.getElementById("postView").classList.add("hidden");
     this.renderPostsList();
-    this.setHashForPost(null);
+    lucide.createIcons();
   },
 
   editCurrentPost() {
