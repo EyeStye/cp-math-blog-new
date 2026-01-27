@@ -102,6 +102,12 @@ header {
   display: none;
 }
 
+/* Ensure all post cards have consistent full width */
+#postsList > div {
+  width: 100%;
+  max-width: 100%;
+}
+
 /* Mobile responsive improvements */
 @media (max-width: 640px) {
   /* Better spacing on mobile */
