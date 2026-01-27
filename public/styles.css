@@ -105,7 +105,6 @@ header {
 /* Fix for equal width post cards */
 #postsList > div {
   flex-shrink: 0 !important;
-}sizing: border-box !important;
 }
 
 /* Mobile responsive improvements */
