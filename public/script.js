@@ -706,6 +706,29 @@ const app = {
       this.setHashForPost(postId);
     }
   },
+  parseInlineMarkdown(text) {
+    // Bold: **text** or __text__
+    text = text.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+    text = text.replace(/__(.+?)__/g, "<strong>$1</strong>");
+
+    // Italic: *text* or _text_ (but not inside words)
+    text = text.replace(/\*([^\s*][^*]*?)\*/g, "<em>$1</em>");
+    text = text.replace(/\b_([^\s_][^_]*?)_\b/g, "<em>$1</em>");
+
+    // Inline code: `code`
+    text = text.replace(
+      /`([^`]+)`/g,
+      '<code class="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-sm">$1</code>',
+    );
+
+    // Links: [text](url)
+    text = text.replace(
+      /\[([^\]]+)\]\(([^)]+)\)/g,
+      '<a href="$2" class="text-blue-600 dark:text-violet-400 hover:underline" target="_blank" rel="noopener">$1</a>',
+    );
+
+    return text;
+  },
 
   parseContent(content) {
     const lines = content.replace(/\r\n/g, "\n").split("\n");
@@ -721,7 +744,9 @@ const app = {
 
     const flushPara = () => {
       if (paraBuf.length === 0) return;
-      const html = paraBuf.map((l) => this.escapeHtml(l)).join("<br>");
+      const html = paraBuf
+        .map((l) => this.parseInlineMarkdown(this.escapeHtml(l)))
+        .join("<br>");
       out.push(`<p class="my-3">${html}</p>`);
       paraBuf = [];
     };
@@ -770,13 +795,21 @@ const app = {
         closeLists();
         continue;
       }
-
+      // Check for horizontal rule: ---, ***, or ___
+      if (trimmed === "---" || trimmed === "***" || trimmed === "___") {
+        flushPara();
+        closeLists();
+        out.push(
+          '<hr class="my-6 border-t-2 border-gray-300 dark:border-gray-600">',
+        );
+        continue;
+      }
       const hMatch = trimmed.match(/^(#{1,3})\s+(.*)$/);
       if (hMatch) {
         flushPara();
         closeLists();
         const level = hMatch[1].length;
-        const text = this.escapeHtml(hMatch[2]);
+        const text = this.parseInlineMarkdown(this.escapeHtml(hMatch[2]));
         const cls =
           level === 1
             ? "text-2xl font-bold mt-6 mb-2"
@@ -798,7 +831,9 @@ const app = {
           out.push(`<ul class="list-disc pl-6 my-3 space-y-1">`);
           inUl = true;
         }
-        out.push(`<li>${this.escapeHtml(ulMatch[1])}</li>`);
+        out.push(
+          `<li>${this.parseInlineMarkdown(this.escapeHtml(ulMatch[1]))}</li>`,
+        );
         continue;
       }
 
@@ -813,7 +848,9 @@ const app = {
           out.push(`<ol class="list-decimal pl-6 my-3 space-y-1">`);
           inOl = true;
         }
-        out.push(`<li>${this.escapeHtml(olMatch[1])}</li>`);
+        out.push(
+          `<li>${this.parseInlineMarkdown(this.escapeHtml(olMatch[1]))}</li>`,
+        );
         continue;
       }
 
