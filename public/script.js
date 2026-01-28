@@ -878,6 +878,8 @@ const app = {
   renderMathAndCode() {
     setTimeout(() => {
       const contentElement = document.getElementById("postViewContent");
+
+      // Render math
       if (contentElement && window.renderMathInElement) {
         renderMathInElement(contentElement, {
           delimiters: [
@@ -889,8 +891,13 @@ const app = {
           throwOnError: false,
         });
       }
+
+      // Highlight code blocks
       if (window.Prism) {
-        Prism.highlightAll();
+        // Target all code blocks in the post view
+        contentElement.querySelectorAll("pre code").forEach((block) => {
+          Prism.highlightElement(block);
+        });
       }
     }, 100);
   },
