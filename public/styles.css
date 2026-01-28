@@ -152,6 +152,11 @@ header {
     padding-right: 1rem;
   }
 
+  /* Hide part of header text on mobile - show only "Math.Primed" */
+  header h1 .hidden-mobile {
+    display: none;
+  }
+
   /* Adjust post content font size on mobile */
   #postViewContent {
     font-size: 15px !important;
