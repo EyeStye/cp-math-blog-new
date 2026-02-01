@@ -359,6 +359,22 @@ code:not(pre code) {
 }
 
 .switch__knob {
+  background-color: #e0e0e0;
+  background-image:
+    radial-gradient(88% 88% at 50% 50%, #f5f5f5 47%, transparent 50%),
+    radial-gradient(88% 88% at 47% 47%, #ffffff 45%, transparent 50%),
+    radial-gradient(65% 70% at 40% 60%, #d0d0d0 46%, transparent 50%);
+  box-shadow:
+    -0.03125em -0.03125em 0.03125em #ffffff inset,
+    -0.0625em -0.0625em 0.03125em #cccccc inset,
+    0.375em 0.125em 0.0625em rgba(0, 0, 0, 0.3);
+  width: 1em;
+  height: 1em;
+  transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* Dark mode knob */
+.dark .switch__knob {
   background-color: #1e1e1e;
   background-image:
     radial-gradient(88% 88% at 50% 50%, #2a2a2a 47%, transparent 50%),
@@ -368,9 +384,48 @@ code:not(pre code) {
     -0.03125em -0.03125em 0.03125em #1e1e1e inset,
     -0.0625em -0.0625em 0.03125em #0a0a0a inset,
     0.375em 0.125em 0.0625em rgba(0, 0, 0, 0.8);
-  width: 1em;
-  height: 1em;
-  transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.switch__base-outer {
+  border-radius: 0.75em;
+  box-shadow:
+    -0.0625em -0.0625em 0.125em rgba(255, 255, 255, 0.8),
+    0.0625em 0.0625em 0.0625em rgba(200, 200, 200, 0.3) inset,
+    0.0625em 0.0625em 0.125em rgba(0, 0, 0, 0.2),
+    -0.0625em -0.0625em 0.0625em rgba(240, 240, 240, 0.5) inset;
+  top: 0.0625em;
+  left: 0.0625em;
+  width: 2.375em;
+  height: 1.375em;
+}
+
+.dark .switch__base-outer {
+  box-shadow:
+    -0.0625em -0.0625em 0.125em rgba(255, 255, 255, 0.1),
+    0.0625em 0.0625em 0.0625em rgba(255, 255, 255, 0.05) inset,
+    0.0625em 0.0625em 0.125em rgba(0, 0, 0, 0.3),
+    -0.0625em -0.0625em 0.0625em rgba(0, 0, 0, 0.2) inset;
+}
+
+.switch__base-inner {
+  border-radius: 0.6875em;
+  box-shadow:
+    -0.125em -0.125em 0.125em rgba(255, 255, 255, 0.3) inset,
+    0.03125em 0.03125em 0.0625em rgba(200, 200, 200, 0.3),
+    0.0625em 0.125em 0.125em rgba(0, 0, 0, 0.15) inset,
+    -0.03125em -0.03125em 0.0625em rgba(240, 240, 240, 0.5);
+  top: 0.1875em;
+  left: 0.1875em;
+  width: 2.125em;
+  height: 1.125em;
+}
+
+.dark .switch__base-inner {
+  box-shadow:
+    -0.125em -0.125em 0.125em rgba(255, 255, 255, 0.05) inset,
+    0.03125em 0.03125em 0.0625em rgba(255, 255, 255, 0.05),
+    0.0625em 0.125em 0.125em rgba(0, 0, 0, 0.3) inset,
+    -0.03125em -0.03125em 0.0625em rgba(0, 0, 0, 0.2);
 }
 
 .switch__knob-container {
