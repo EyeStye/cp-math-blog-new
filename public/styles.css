@@ -231,3 +231,17 @@ header {
   max-height: 400px;
   overflow-y: auto;
 }
+
+/* Ensure code blocks have background */
+pre[class*="language-"] {
+  background: #2d2d2d !important;
+  padding: 1rem !important;
+}
+
+code[class*="language-"] {
+  text-shadow: none !important;
+}
+
+.dark pre[class*="language-"] {
+  background: #1a1a1a !important;
+}
