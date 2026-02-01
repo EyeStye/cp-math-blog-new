@@ -215,3 +215,19 @@ header {
 .dark #postsList > div:hover::before {
   opacity: 1;
 }
+
+/* Post preview styling */
+#postPreviewContent,
+#postPreviewContent p,
+#postPreviewContent li,
+#postPreviewContent h1,
+#postPreviewContent h2,
+#postPreviewContent h3 {
+  font-family: Arial, sans-serif;
+}
+
+#postPreviewContent {
+  min-height: 100px;
+  max-height: 400px;
+  overflow-y: auto;
+}

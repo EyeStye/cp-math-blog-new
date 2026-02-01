@@ -502,6 +502,27 @@
                 class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 font-mono text-sm"
                 placeholder="Example:&#10;The quadratic formula is $x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$&#10;&#10;```cpp&#10;int fibonacci(int n) {&#10;    if (n <= 1) return n;&#10;    return fibonacci(n-1) + fibonacci(n-2);&#10;}&#10;```"
               ></textarea>
+              <!-- Preview Section -->
+              <div id="postPreview" class="hidden mt-4">
+                <div class="flex items-center justify-between mb-2">
+                  <label
+                    class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                  >
+                    Live Preview
+                  </label>
+                  <button
+                    onclick="app.togglePreview()"
+                    class="text-xs text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
+                  >
+                    Hide Preview
+                  </button>
+                </div>
+                <div
+                  id="postPreviewContent"
+                  class="prose max-w-none text-gray-700 dark:text-gray-300 leading-relaxed border border-gray-300 dark:border-gray-600 rounded-lg p-4 bg-gray-50 dark:bg-gray-800"
+                  style="font-size: 16px; line-height: 1.8"
+                ></div>
+              </div>
             </div>
             <div class="flex space-x-3">
               <button

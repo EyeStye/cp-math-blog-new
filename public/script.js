@@ -435,6 +435,11 @@ const app = {
           this.addCustomTag();
         }
       });
+
+    // Add after the customTagInput event listener (around line 437)
+    document.getElementById("postContent").addEventListener("input", () => {
+      this.updatePreview();
+    });
   },
 
   async loadPosts() {
@@ -570,6 +575,40 @@ const app = {
     } else {
       wrapper.classList.add("hidden");
     }
+  },
+
+  updatePreview() {
+    const content = document.getElementById("postContent").value;
+    const previewContainer = document.getElementById("postPreview");
+    const previewContent = document.getElementById("postPreviewContent");
+
+    if (content.trim()) {
+      previewContainer.classList.remove("hidden");
+      previewContent.innerHTML = this.parseContent(content);
+
+      // Render math
+      if (window.renderMathInElement) {
+        renderMathInElement(previewContent, {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false },
+          ],
+          throwOnError: false,
+        });
+      }
+
+      // Highlight code
+      if (window.Prism) {
+        Prism.highlightAllUnder(previewContent);
+      }
+    } else {
+      previewContainer.classList.add("hidden");
+    }
+  },
+
+  togglePreview() {
+    const previewContainer = document.getElementById("postPreview");
+    previewContainer.classList.toggle("hidden");
   },
 
   async savePost() {
