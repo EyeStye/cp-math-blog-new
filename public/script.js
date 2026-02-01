@@ -931,11 +931,11 @@ const app = {
         });
       }
 
-      // Highlight code blocks
-      if (window.Prism) {
-        Prism.highlightAll();
-      } else {
-        console.error("Prism not loaded");
+      // Highlight code blocks with Highlight.js
+      if (window.hljs) {
+        contentElement.querySelectorAll("pre code").forEach((block) => {
+          hljs.highlightElement(block);
+        });
       }
     }, 100);
   },
