@@ -367,7 +367,7 @@ code:not(pre code) {
   box-shadow:
     -0.03125em -0.03125em 0.03125em #ffffff inset,
     -0.0625em -0.0625em 0.03125em #ffffff inset,
-    0.375em 0.125em 0.0625em rgba(0, 0, 0, 0.3);
+    0.375em 0.125em 0.0625em rgb(255, 255, 255);
   width: 1em;
   height: 1em;
   transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
