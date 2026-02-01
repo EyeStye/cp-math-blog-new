@@ -189,6 +189,9 @@ const app = {
     // Load theme from localStorage instead of database
     const savedTheme = localStorage.getItem("theme");
     this.state.theme = savedTheme || "light";
+    // After: this.state.theme = savedTheme || "light";
+    document.getElementById("themeToggle").checked =
+      this.state.theme === "dark";
     this.applyTheme();
   },
 
@@ -213,10 +216,11 @@ const app = {
   },
 
   toggleTheme() {
-    // Toggle theme and save to localStorage instead of database
     this.state.theme = this.state.theme === "light" ? "dark" : "light";
+    document.documentElement.classList.toggle("dark");
+    document.getElementById("themeToggle").checked =
+      this.state.theme === "dark";
     localStorage.setItem("theme", this.state.theme);
-    this.applyTheme();
   },
 
   async setupPassword() {
