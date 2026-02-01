@@ -933,10 +933,9 @@ const app = {
 
       // Highlight code blocks
       if (window.Prism) {
-        // Target all code blocks in the post view
-        contentElement.querySelectorAll("pre code").forEach((block) => {
-          Prism.highlightElement(block);
-        });
+        Prism.highlightAll();
+      } else {
+        console.error("Prism not loaded");
       }
     }, 100);
   },
