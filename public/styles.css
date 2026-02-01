@@ -232,16 +232,77 @@ header {
   overflow-y: auto;
 }
 
-/* Ensure code blocks have background */
+/* Code block styling - Force colors */
 pre[class*="language-"] {
   background: #2d2d2d !important;
+  color: #ccc !important;
   padding: 1rem !important;
+  border-radius: 0.5rem !important;
+  overflow: auto !important;
+  margin: 1rem 0 !important;
 }
 
 code[class*="language-"] {
+  color: #ccc !important;
+  background: none !important;
   text-shadow: none !important;
+  font-family: "Courier New", Courier, monospace !important;
+  font-size: 14px !important;
+  line-height: 1.5 !important;
 }
 
-.dark pre[class*="language-"] {
-  background: #1a1a1a !important;
+/* Prism syntax highlighting tokens */
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #999 !important;
+}
+
+.token.punctuation {
+  color: #ccc !important;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  color: #f08d49 !important;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+  color: #7ec699 !important;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+  color: #67cdcc !important;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+  color: #cc99cd !important;
+}
+
+.token.function,
+.token.class-name {
+  color: #f8c555 !important;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+  color: #e90 !important;
 }
