@@ -363,10 +363,10 @@ code:not(pre code) {
   background-image:
     radial-gradient(88% 88% at 50% 50%, #f5f5f5 47%, transparent 50%),
     radial-gradient(88% 88% at 47% 47%, #ffffff 45%, transparent 50%),
-    radial-gradient(65% 70% at 40% 60%, #d0d0d0 46%, transparent 50%);
+    radial-gradient(65% 70% at 40% 60%, #ffffff 46%, transparent 50%);
   box-shadow:
     -0.03125em -0.03125em 0.03125em #ffffff inset,
-    -0.0625em -0.0625em 0.03125em #cccccc inset,
+    -0.0625em -0.0625em 0.03125em #ffffff inset,
     0.375em 0.125em 0.0625em rgba(0, 0, 0, 0.3);
   width: 1em;
   height: 1em;
